@@ -21,6 +21,7 @@
     <!--aca ponemos msvc-usuarios   -->
     <modules>
         <module>msvc-usuarios</module>
+        <module>msvc-cursos</module>
     </modules>
 
     <properties>
