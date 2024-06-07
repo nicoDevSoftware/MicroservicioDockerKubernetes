@@ -1,7 +1,7 @@
 package org.nico.springcloud.msvc_cursos.controller;
 
 import jakarta.validation.Valid;
-import org.nico.springcloud.msvc_cursos.entity.Curso;
+import org.nico.springcloud.msvc_cursos.models.entity.Curso;
 import org.nico.springcloud.msvc_cursos.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

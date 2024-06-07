@@ -1,28 +1,18 @@
-package org.nico.springcloud.msvc.usuarios.models.entity;
+package org.nico.springcloud.msvc_cursos.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 
-@Entity
-@Table(name="usuarios")//opcional si no se difine el nom,bre de la va Usuario
 public class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     private String nombre;
-
-    @Column(unique = true)
-    @Email
     private String email;
-    @NotBlank
     private String password;
-
-
 
     public Long getId() {
         return id;

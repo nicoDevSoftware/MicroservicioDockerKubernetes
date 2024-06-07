@@ -1,6 +1,6 @@
 package org.nico.springcloud.msvc_cursos.repositories;
 
-import org.nico.springcloud.msvc_cursos.entity.Curso;
+import org.nico.springcloud.msvc_cursos.models.entity.Curso;
 import org.springframework.data.repository.CrudRepository;
 
 
