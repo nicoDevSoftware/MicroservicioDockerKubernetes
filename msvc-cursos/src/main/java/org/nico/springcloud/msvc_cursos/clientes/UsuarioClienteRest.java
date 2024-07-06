@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "msvc-usuarios",url="localhost:8001")
 public interface UsuarioClienteRest {
-
+    // aca estamos consumiendo los controladores de usuario
+    // para usarlo dentro de
     @GetMapping("/{id}")
     //no ponemos public Usuario detalle porq en interface por defecto es public
     Usuario detalle(@PathVariable Long id);

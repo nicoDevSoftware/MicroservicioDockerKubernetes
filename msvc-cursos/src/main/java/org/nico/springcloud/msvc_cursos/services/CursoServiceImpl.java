@@ -3,6 +3,7 @@ package org.nico.springcloud.msvc_cursos.services;
 import org.nico.springcloud.msvc_cursos.clientes.UsuarioClienteRest;
 import org.nico.springcloud.msvc_cursos.models.Usuario;
 import org.nico.springcloud.msvc_cursos.models.entity.Curso;
+import org.nico.springcloud.msvc_cursos.models.entity.CursoUsuario;
 import org.nico.springcloud.msvc_cursos.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class CursoServiceImpl implements CursoService {
     CursoRepository repository;
     @Autowired
     UsuarioClienteRest usuarioClienteRest;
+
 
     @Override
     @Transactional(readOnly = true)
@@ -44,17 +46,60 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
+    @Transactional
     public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {
+        Optional<Curso> o = repository.findById(cursoId);
+        if (o.isPresent()) {
+            Usuario usuarioMsvc = usuarioClienteRest.detalle(usuario.getId());
+
+            Curso curso = o.get();
+            CursoUsuario cursoUsuario = new CursoUsuario();
+            cursoUsuario.setUsuarioId(usuarioMsvc.getId());
+
+            curso.addCursoUsuario(cursoUsuario);
+            repository.save(curso);
+            return Optional.of(usuarioMsvc);
+        }
+
         return Optional.empty();
     }
 
     @Override
+    @Transactional
     public Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId) {
+        Optional<Curso> o = repository.findById(cursoId);
+        if (o.isPresent()) {
+            Usuario usuarioNuevoMsvc = usuarioClienteRest.crear(usuario);
+
+            Curso curso = o.get();
+            CursoUsuario cursoUsuario = new CursoUsuario();
+            cursoUsuario.setUsuarioId(usuarioNuevoMsvc.getId());
+
+            curso.addCursoUsuario(cursoUsuario);
+            repository.save(curso);
+            return Optional.of(usuarioNuevoMsvc);
+        }
+
         return Optional.empty();
     }
 
     @Override
+    @Transactional
     public Optional<Usuario> eliminarUsuario(Usuario usuario, Long cursoId) {
+        Optional<Curso> o = repository.findById(cursoId);
+        if (o.isPresent()) {
+            Usuario usuarioMsvc = usuarioClienteRest.detalle(usuario.getId());
+
+            Curso curso = o.get();
+            CursoUsuario cursoUsuario = new CursoUsuario();
+            cursoUsuario.setUsuarioId(usuarioMsvc.getId());
+
+            curso.removeCursoUsuario(cursoUsuario);
+            repository.save(curso);
+            return Optional.of(usuarioMsvc);
+        }
+
         return Optional.empty();
     }
 }
+
