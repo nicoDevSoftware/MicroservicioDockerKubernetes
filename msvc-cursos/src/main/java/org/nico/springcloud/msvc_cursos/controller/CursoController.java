@@ -8,6 +8,7 @@ import org.nico.springcloud.msvc_cursos.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -115,6 +116,12 @@ public class CursoController {
         return ResponseEntity.notFound().build();
     }
 
+        @DeleteMapping("/eliminar-usuarioDeCurso/{id}")
+    public ResponseEntity<?>eliminarCursoUsuarioPorId(@PathVariable Long id){
+        service.eliminarCursoUsuarioPorId(id);
+        return ResponseEntity.noContent().build();
+    }
+
     private ResponseEntity<Map<String, String>> validar(BindingResult result) {
         //por cada error que haya lo vamos a guardar en un map llave valor para despeus devolverlo
         Map<String, String> errores = new HashMap<>();
@@ -124,5 +131,7 @@ public class CursoController {
         });
         return ResponseEntity.badRequest().body(errores);
     }
+
+
 
 }
