@@ -26,7 +26,8 @@ public class CursoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> detalle(@PathVariable Long id) {
-        Optional<Curso> o = service.porId(id);
+        // aca podemos usar 2 metodos porIdConUsuarios es mas completo y service.porId(id) trae menos cosas
+        Optional<Curso> o =  service.porIdConUsuarios(id);//service.porId(id);
         if (o.isPresent()) {
             return ResponseEntity.ok(o.get());
         }

@@ -15,6 +15,7 @@ public interface CursoService {
 
 
 
+
     //de aca para arriba tenemos la logica de negocia de percistencia de datos
     // ahhora vamos hacer la logica en donde obtenemos los datos desde otro servicio
     Optional<Usuario>asignarUsuario(Usuario usuario,Long cursoId);
@@ -23,6 +24,8 @@ public interface CursoService {
     Optional<Usuario>crearUsuario(Usuario usuario,Long cursoId);
     //eliminamos el usuario de un curso en particular nada mas.
     Optional<Usuario>eliminarUsuario(Usuario usuario ,Long cursoId);
+
+    Optional<Curso> porIdConUsuarios(Long id);
 
 
 

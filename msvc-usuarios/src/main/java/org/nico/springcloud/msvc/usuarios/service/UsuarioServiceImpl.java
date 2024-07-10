@@ -41,6 +41,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Usuario> listarPorIds(Iterable<Long> ids) {
     //List<Usuario> repository.findAllById(ids); si tira error cambiar y verificar
         return  repository.findAllById(ids);
