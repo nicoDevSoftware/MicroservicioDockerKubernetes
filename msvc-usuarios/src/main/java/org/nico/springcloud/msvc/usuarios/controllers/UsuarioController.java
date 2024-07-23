@@ -43,7 +43,7 @@ public class UsuarioController {
         //!usuario.getEmail().isBlank() si no esta vacio!
         if(!usuario.getEmail().isBlank() && service.existePorEmail(usuario.getEmail())){
             return ResponseEntity.badRequest().body(Collections.singletonMap("mensaje",
-                    "Ya existe un usuario con ese email!"));
+                    "Ya, existe un usuario con ese email!"));
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(usuario));
     }
