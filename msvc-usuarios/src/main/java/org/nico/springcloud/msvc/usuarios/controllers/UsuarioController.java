@@ -20,8 +20,9 @@ public class UsuarioController {
     UsuarioService service;
 
     @GetMapping
-    public List<Usuario> listar() {
-        return service.listar();
+    public Map<String ,List<Usuario>> listar() {
+
+        return Collections.singletonMap("usuarios",service.listar());
     }
 
     @GetMapping("/{id}")
@@ -94,7 +95,7 @@ public class UsuarioController {
         Map<String, String> errores = new HashMap<>();
 //  recorremos el  result que tiene los errores y agregamos esos errores 1 por 1 al map de errores
         result.getFieldErrors().forEach(err -> {
-            errores.put(err.getField(), " El campo " + err.getField() + " " + err.getDefaultMessage());
+            errores.put(err.getField(), " El campo! " + err.getField() + " " + err.getDefaultMessage());
         });
         return ResponseEntity.badRequest().body(errores);
     }
